@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');   /*font-family: 'Oswald', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');  /*font-family: 'Ubuntu', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');   /*font-family: 'Dosis', sans-serif;*/
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;   /*Toda la altura de la pantalla*/
+    background-color: black;
+}
+
+.banner {
+    position: absolute;
+    top: 35%;   /*Para ajustarlo al centro*/
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    overflow: hidden;
+}
+
+.banner::after{ 
+    content: '';
+    width: 250%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #000, #000);
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation: bannerAnim 3s linear forwards;  /*Animación al poner botón encima*/
+}
+
+@keyframes bannerAnim{
+    0%{right: 0;}
+    100%{right: -250%;}
+}
+
+.banner h1{
+    color: #91130f;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 120px;
+    margin-bottom: 100px;
+    border-top: 5px solid #91130f;
+    border-bottom: 5px solid #91130f;
+}
+
+.banner button{   /*Botón del banner*/
+    width: 230px;
+    padding: 10px;
+    background: linear-gradient(to right, #440402, #c0120c);  /*Gradiente lineal en el fondo del botón*/
+    font-family: "Dosis", sans-serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 100px;
+    transform: perspective(500px) rotateY(-15deg);  /*Ligeramente rotado como en 3D*/
+    text-shadow: 6px 3px 2px rgba(0, 0, 0, .4);
+    cursor: pointer;
+    animation: buttonAnim 1s 2.5s backwards;
+    transition: all .5s;
+}
+
+.banner button:hover{  /*Cómo se comporta cuando pasamos ratón por encima*/
+    transform: perspective(500px) rotateY(15deg);
+    text-shadow: -6px 3px 2px rgba(0, 0, 0, .4);
+    background: linear-gradient(to left, #440402, #c0120c);
+}
+
+@keyframes buttonAnim {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+.banner button::before {   /*Para completar animación del botón, es un gradiente blanco transparente*/
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, white, transparent);
+    position: absolute;
+    top: 0;
+    left: -100%;  /*A la izda del botón*/
+    transform: skewX(-30deg);
+    transition: left .3s;
+}
+
+.banner button:hover::before {  /*Gradiente blanco pasa a la derecha al pasar ratón por botón.*/
+    left: 100%;
+}
+
+.slideshow-wrapper {
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s;
+}
+
+.slide:nth-child(1){  /*Primera diapo*/
+    width: 100%;  /*Que ocupe 100% de la pantalla*/
+    height: 100vh; 
+    background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .1)), url(../img/ny.jpg) center no-repeat;
+    background-size: cover;
+    position: relative;
+
+}
+
+.slide:nth-child(2){
+    width: 100%;
+    height: 100vh; 
+    background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .1)), url(../img/rome.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.slide:nth-child(3){
+    width: 100%;
+    height: 100vh; 
+    background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .1)), url(../img/tokyo.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.slide:nth-child(4){
+    width: 100%;
+    height: 100vh; 
+    background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .1)), url(../img/london.jpg) center no-repeat;
+    background-size: cover;
+}
+
+/*   En ejercicio original:
+.slide:nth-child(4) {
+    background: linear-gradient(100deg, rgba(38, 38, 38, 1), rgba(38, 38, 38, .8), transparent), url(./images/tokyo.jpg) center no-repeat;
+    background-size: cover;
+}
+*/
+
+.slideshow{  
+    display: flex;  /*Alinear slides en horizontal*/
+    width: 400%;    /*Para que quepan las 4 slides una al lado de las otras*/
+    height: 100%;
+    position: relative;
+}
+
+
+@keyframes slideshow {  /*Pase de diapositivas*/
+    0%{left: 0;}
+    10%{left: 0;}
+    15%{left: -100%;}
+    25%{left: -100%;}
+    30%{left: -200%;}
+    40%{left: -200%;}
+    45%{left: -300%;}
+    55%{left: -300%;}  /*Comienza la marcha atrás de los slides*/
+    60%{left: -200%;}
+    70%{left: -200%;}
+    75%{left: -100%;}
+    85%{left: -100%;}
+    90%{left: 0;}  /*Vuelve a 0 para ir a 1º slide*/
+}
+
+.content{
+    width: 500px;
+    position: relative;
+    top: 35%;
+    left: 5%;
+}
+
+.content h2{
+    font-family: "Oswald", sans-serif;
+    font-size: 80px;
+    font-weight: 400;
+    color: #fff;
+
+}
+
+.content p{
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+    color: #ccc;
+}
+
+.content button{
+    width: 130px;
+    padding: 10px 10px 0 0;
+    margin-top: 30px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    font-family: "Oswald", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: white;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+}
+
+.content i{
+    margin-left: 8px;
+}
