@@ -64,6 +64,7 @@
     cursor: pointer;
     animation: buttonAnim 1s 2.5s backwards;
     transition: all .5s;
+    overflow: hidden;
 }
 
 .banner button:hover{  /*Cómo se comporta cuando pasamos ratón por encima*/
